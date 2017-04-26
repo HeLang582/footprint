@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>FootPrint</title>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="css/zoom.css" rel="stylesheet" type="text/css">
+    <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css">
+    <link href="css/indexStyle.css" rel="stylesheet" type="text/css">
+    <!--<link href="less/indexStyle.less" rel="stylesheet/less" type="text/css">-->
+    <!--<script src="js/less.js" type="text/javascript"></script>-->
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-default  navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ft-navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img  class="logo-image img-responsive" src="images/footprint_logo_green.png"></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="ft-navbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">首页</a></li>
+                    <li><a href="personPage.html">个人主页</a></li>
+                </ul>
+                <!--登录之前显示-->
+                <ul class="nav navbar-nav navbar-right" id="beforeLogin">
+                    <li class=""><a href="#" data-toggle="modal" data-target="#loginModal">登录</a></li>
+                    <li class=""><a href="#" data-toggle="modal" data-target="#registModal">注册</a></li>
+                </ul>
+                <!--登录之后显示-->
+                <ul class="nav navbar-nav navbar-right logined" id="afterLogin">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" id="welcome">
+                            <span>嗨! Girl 您好！</span><img src="images/person1.jpg">
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="personPage.html">个人中心</a></li>
+                            <li><a href="#" class="exit">安全退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 personal-padding">
+            <div class="container-fluid personal-info">
+                <div class="head-background">
+                    <img src="images/ps-background2.jpg">
+                </div>
+                <div class="head-pic">
+                    <a href="personPage.html"><img src="images/person1.jpg"></a>
+                </div>
+                <div class="ps-info">
+                    <a href="personPage.html" id="name">Girl Name</a>
+                    <p>I wish i was a little bit taller, wish i was a baller,
+                        wish i had a girl...</p>
+                    <div class="ps-left">
+                        <div>
+                            好友<br>
+                            <span><a href="#">12M</a></span>
+                        </div>
+                    </div>
+                    <div class="ps-right">
+                        <div>
+                            动态<br>
+                            <span><a href="#">10</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-edit">
+                <ul>
+                    <h4>个人信息 &bull; <a href="#" data-toggle="modal" data-target="#updatePersonInfo">编辑</a></h4>
+                    <li>
+                        <span class="glyphicon glyphicon-home"></span>
+                        中国、陕西
+                    </li>
+                    <li>
+                        <span class="glyphicon glyphicon-earphone"></span>
+                        15651003976
+                    </li>
+                    <li>
+                        <span class="glyphicon glyphicon-heart"></span>
+                        篮球、旅游、音乐
+                    </li>
+                    <li>
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        中国、北京
+                    </li>
+                </ul>
+            </div>
+            <div class="photo-edit">
+                <h4>相关图片 &bull; <a href="#">编辑</a></h4>
+                <div class="container-fluid photo-box">
+                    <div class="item" data-order="1"><img src="images/5.jpg" class="img-responsive" data-action="zoom"></div>
+                    <div class="item" data-order="2"><img src="images/6.jpg" class="img-responsive" data-action="zoom"></div>
+                    <div class="item" data-order="3"><img src="images/7.jpg" class="img-responsive" data-action="zoom"></div>
+                    <div class="item" data-order="4"><img src="images/8.jpg" class="img-responsive" data-action="zoom"></div>
+                    <div class="item" data-order="5"><img src="images/12.jpg" class="img-responsive" data-action="zoom"></div>
+                    <div class="item" data-order="6"><img src="images/9.jpg" class="img-responsive" data-action="zoom"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="ft-article">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">我的好友</a></li>
+                    <li role="presentation"><a href="#systemPrompt" aria-controls="systemPrompt" role="tab" data-toggle="tab">系统推荐</a></li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <ul>
+                            <li>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="personPage.html">
+                                            <img class="media-object ft-article-head" src="images/person1.jpg">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">陕西科技大学</h4>
+                                        <small><span class="glyphicon glyphicon-calendar"></span>1天前</small>
+                                        <p>陕西科技大学（Shaanxi University of Science & Technology），位于西安市未央大学园区，
+                                            是“十二五”期间陕西省重点建设的高水平大学，也是中国西部地区唯一一所以轻工为特色的
+                                            多科性大学，入选国家“中西部高校基础能力建设工程“和教育部“卓越工程师教育培养计划
+                                            “，是陕西省人民政府与中国轻工业联合会、中国轻工集团公司共同建设的重点高校。</p>
+                                        <div class="article-photo">
+                                            <div class="item" data-order="1"><img src="images/4.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="2"><img src="images/1.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="3"><img src="images/2.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="4"><img src="images/3.jpg" class="img-responsive"  data-action="zoom"></div>
+                                        </div>
+                                        <div class="ft-article-footer">
+                                            <span class="glyphicon glyphicon-map-marker"></span>
+                                            <span>中国 &bull; 北京</span>
+                                            <div class="comment-menu">
+                                                <a role="button" class="btn support" data-content="0" data-pointid="${point.id}">
+                                                    <span class="glyphicon glyphicon-heart-empty"></span>
+                                                    <small>赞</small>
+                                                </a>
+                                                <a role="button" class="btn comment-toggle" data-toggle="modal" data-target="#commentModal"
+                                                   data-userid="${userid}" data-pointid="${point.id}">
+                                                    <span class="glyphicon glyphicon-comment"></span>
+                                                    <small>评论</small>
+                                                </a>
+                                            </div>
+                                            <div class="comment">
+                                                <span class="glyphicon glyphicon-triangle-top triangle"></span>
+                                                <span class="glyphicon glyphicon-heart-empty comment-praise"></span>张三，李四
+                                                <div class="comment-content">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object comment-head" src="images/personal2.png">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <p>陕西科技大学真是个美丽的地方,我用亲身的体验来向大家证明,这个地方真的很漂亮</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object comment-head" src="images/personal2.png">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <p>陕西科技大学真是个美丽的地方,我用亲身的体验来向大家证明,这个地方真的很漂亮</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="media-object ft-article-head" src="images/personal2.png">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Jacob Thornton</h4>
+                                        <small><span class="glyphicon glyphicon-calendar"></span>50年前</small>
+                                        <p>Donec id elit non mi porta gravida at eget metus. Integer posuere erat a ante venenatis
+                                            dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient
+                                            montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum
+                                            at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        <div class="article-photo">
+                                            <div class="item" data-order="1"><img src="images/6.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="2"><img src="images/7.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="3"><img src="images/8.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="4"><img src="images/9.jpg" class="img-responsive"  data-action="zoom"></div>
+                                        </div>
+                                        <div class="ft-article-footer">
+                                            <span class="glyphicon glyphicon-map-marker"></span>
+                                            <span>中国 &bull; 北京</span>
+                                            <div class="comment-menu">
+                                                <a role="button" class="btn support" data-content="0" data-pointid="6">
+                                                    <span class="glyphicon glyphicon-heart-empty"></span>
+                                                    <small>赞</small>
+                                                </a>
+                                                <a role="button" class="btn comment-toggle" data-toggle="modal" data-target="#commentModal"
+                                                   data-userid="${userid}" data-pointid="${point.id}">
+                                                    <span class="glyphicon glyphicon-comment"></span>
+                                                    <small>评论</small>
+                                                </a>
+                                            </div>
+                                            <div class="comment">
+                                                <span class="glyphicon glyphicon-triangle-top triangle"></span>
+                                                <span class="glyphicon glyphicon-heart-empty comment-praise"></span>张三，李四
+                                                <div class="comment-content">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object comment-head" src="images/person1.jpg">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <p> Donec id elit non mi porta gravida at eget metus. Vivamus sagittis
+                                                                lacus vel augue laoreet rutrum faucibus dolor auctor. Donec
+                                                                ullamcorper nulla non metus auctor fringilla. Praesent commodo
+                                                                cursus magna, vel scelerisque nisl consectetur et. Sed posuere
+                                                                consectetur est at lobortis.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object comment-head" src="images/personal2.png">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus,
+                                                                tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+                                                                massa justo sit amet risus.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="systemPrompt">
+                        <ul>
+                            <li>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="media-object ft-article-head" src="images/personal2.png">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Jacob Thornton</h4>
+                                        <small><span class="glyphicon glyphicon-calendar"></span>50年前</small>
+                                        <p>Donec id elit non mi porta gravida at eget metus. Integer posuere erat a ante venenatis
+                                            dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient
+                                            montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum
+                                            at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        <div class="article-photo">
+                                            <div class="item" data-order="1"><img src="images/6.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="2"><img src="images/7.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="3"><img src="images/8.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="4"><img src="images/9.jpg" class="img-responsive"  data-action="zoom"></div>
+                                        </div>
+                                        <div class="ft-article-footer">
+                                            <span class="glyphicon glyphicon-map-marker"></span>
+                                            <span>中国 &bull; 北京</span>
+                                            <div class="comment-menu">
+                                                <a role="button" class="btn support" data-content="0" data-pointid="3">
+                                                    <span class="glyphicon glyphicon-heart-empty"></span>
+                                                    <small>赞</small>
+                                                </a>
+                                                <a role="button" class="btn comment-toggle" data-toggle="modal" data-target="#commentModal"
+                                                   data-userid="${userid}" data-pointid="${point.id}">
+                                                    <span class="glyphicon glyphicon-comment"></span>
+                                                    <small>评论</small>
+                                                </a>
+                                            </div>
+                                            <div class="comment">
+                                                <span class="glyphicon glyphicon-triangle-top triangle"></span>
+                                                <span class="glyphicon glyphicon-heart-empty comment-praise"></span>张三，李四
+                                                <div class="comment-content">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object comment-head" src="images/person1.jpg">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <p> Donec id elit non mi porta gravida at eget metus. Vivamus sagittis
+                                                                lacus vel augue laoreet rutrum faucibus dolor auctor. Donec
+                                                                ullamcorper nulla non metus auctor fringilla. Praesent commodo
+                                                                cursus magna, vel scelerisque nisl consectetur et. Sed posuere
+                                                                consectetur est at lobortis.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object comment-head" src="images/personal2.png">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus,
+                                                                tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+                                                                massa justo sit amet risus.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="#">
+                                            <img class="media-object ft-article-head" src="images/personal2.png">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">Jacob Thornton</h4>
+                                        <small><span class="glyphicon glyphicon-calendar"></span>100年前</small>
+                                        <p>Donec id elit non mi porta gravida at eget metus. Integer posuere erat a ante venenatis
+                                            dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient
+                                            montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum
+                                            at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                        <div class="article-photo">
+                                            <div class="item" data-order="1"><img src="images/6.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="2"><img src="images/7.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="3"><img src="images/8.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="4"><img src="images/9.jpg" class="img-responsive"  data-action="zoom"></div>
+                                        </div>
+                                        <div class="ft-article-footer">
+                                            <span class="glyphicon glyphicon-map-marker"></span>
+                                            <span>中国 &bull; 北京</span>
+                                            <div class="comment-menu">
+                                                <a role="button" class="btn support" data-content="1">
+                                                    <span class="glyphicon glyphicon-heart-empty"></span><small>赞</small>
+                                                </a>
+                                                <a role="button" class="btn" data-toggle="modal" data-target="#commentModal">
+                                                    <span class="glyphicon glyphicon-comment"></span><small>评论</small>
+                                                </a>
+                                            </div>
+                                            <div class="comment">
+                                                <span class="glyphicon glyphicon-triangle-top triangle"></span>
+                                                <span class="glyphicon glyphicon-heart-empty comment-praise"></span>张三，李四
+                                                <div class="comment-content">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object comment-head" src="images/person1.jpg">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <p> Donec id elit non mi porta gravida at eget metus. Vivamus sagittis
+                                                                lacus vel augue laoreet rutrum faucibus dolor auctor. Donec
+                                                                ullamcorper nulla non metus auctor fringilla. Praesent commodo
+                                                                cursus magna, vel scelerisque nisl consectetur et. Sed posuere
+                                                                consectetur est at lobortis.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object comment-head" src="images/personal2.png">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus,
+                                                                tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
+                                                                massa justo sit amet risus.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 other-info">
+
+            <div class="container-fluid hot-topic">
+                <h4>热点推送</h4>
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="images/5.jpg" alt="...">
+                        </div>
+                        <div class="item">
+                            <img src="images/6.jpg" alt="...">
+                        </div>
+                        <div class="item">
+                            <img src="images/7.jpg" alt="...">
+                        </div>
+                        <div class="item">
+                            <img src="images/8.jpg" alt="...">
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <a href="#" class="homeCreatHotpoint" data-toggle="modal" data-target="#createHotpoint">
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                    &nbsp;创建热点
+                </a>
+            </div>
+
+            <div class="container-fluid hot-topic">
+                <h4>名人推荐 &bull; <a href="#">查看全部</a></h4>
+                <div class="media">
+                    <div class="media-left media-bottom">
+                        <a href="#">
+                            <img class="media-object ft-recommend-head" src="images/person3.jpg">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h5>Jacob Thornton</h5>
+                        <button class="btn btn-default btn-xs" type="button">
+                            <span class="glyphicon glyphicon-hand-down"></span>&nbsp;关注
+                        </button>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object ft-recommend-head" src="images/person3.jpg">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h5>Jacob Thornton</h5>
+                        <button class="btn btn-default btn-xs" type="button">
+                            <span class="glyphicon glyphicon-hand-down"></span>&nbsp;关注
+                        </button>
+                    </div>
+                </div>
+                <div class="media">
+                    <div class="media-left">
+                        <a href="#">
+                            <img class="media-object ft-recommend-head" src="images/person3.jpg">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h5>Jacob Thornton</h5>
+                        <button class="btn btn-default btn-xs" type="button">
+                            <span class="glyphicon glyphicon-hand-down"></span>&nbsp;关注
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid copy-info">
+                <p>&copy; 2017 Footprint</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--登录模态框-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <img src="images/footprint_logo.png" class="img-responsive login-logo">
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input type="text" id="userName" class="form-control" placeholder="用户名">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="password" class="form-control" placeholder="密码">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">记住密码
+                        </label>
+                    </div>
+                    <button type="button" id="loginSubmit" class="btn btn-default">用户登录</button>
+                    <label class="forget-password">
+                        <a href="#">忘记密码？</a>
+                    </label>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--注册模态框-->
+<div class="modal fade" id="registModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <img src="images/footprint_logo.png" class="img-responsive login-logo">
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <input type="text" name="username" class="form-control" placeholder="用户名">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="密码">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="phone" class="form-control" placeholder="手机号">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="nickname" class="form-control" placeholder="昵称">
+                    </div>
+
+                    <button type="button" id="registerSubmit" class="btn btn-default">用户注册</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--评论模态框-->
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <img src="images/footprint_logo.png" class="img-responsive login-logo">
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <input id="userid" name="ownerid" type="hidden" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input id="pointid" name="pointid" type="hidden" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="4" placeholder="吐槽点什么..."></textarea>
+                    </div>
+                    <button type="submit" id="commentSubmit" class="btn btn-default">提交评论</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--创建热点-->
+<div class="modal fade" id="createHotpoint" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <img src="images/footprint_logo.png" class="img-responsive login-logo">
+            </div>
+            <div class="modal-body">
+                <form method="post" action="" id="Hotpoint_form">
+                    <div class="form-group">
+                        <input type="text" size="40" class="form-control" id="pname" name="pname" placeholder="热点名称">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" size="40" class="form-control" id="user" name="user" placeholder="用户名称">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" size="40" class="form-control" id="weidu" name="weidu" placeholder="当前纬度">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" size="40" class="form-control" id="jingdu" name="jingdu" placeholder="当前经度">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" size="40" class="form-control" id="address" name="address"
+                               placeholder="您的地址">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="4" placeholder="这一刻的想法..." id="say"
+                                  name="say">这一刻的想法...</textarea>
+                    </div>
+                </form>
+                <div class="form-group">
+                    <label class="control-label">添加图片</label>
+                    <input id="input-44" name="input44[]" type="file" multiple class="file-loading">
+                    <div id="errorBlock" class="help-block"></div>
+                </div>
+                <input type="button" class="btn btn-default HotpointSubmit" form="Hotpoint_form" value="提交创建">
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--修改个人信息模态框-->
+<div class="modal fade" id="updatePersonInfo" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <img src="images/footprint_logo.png" class="img-responsive login-logo">
+            </div>
+            <div class="modal-body">
+                <form method="post" action="" id="updatePersonInfo_form">
+
+                </form>
+                <input type="button" class="btn btn-default HotpointSubmit" form="Hotpoint_form" value="提交创建">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script src="js/jquerySession.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/mp.mansory.js"></script>
+<script src="js/zoom.js"></script>
+<script src="js/footprint.js"></script>
+<script src="js/fileinput.min.js"></script>
+<script src="js/zh.js"></script>
+
+</html>
