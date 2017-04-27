@@ -36,16 +36,18 @@ jQuery(document).ready(function ( $ ) {
         }
     );
 
-    $("#afterLogin").hide();
-
-//  判断用户是否已登录,如果已经登录过存在有session则直接显示
-//     if("<%=(String)session.getAttribute('user')%>"=="login_success"){
-//         alert("aaaa");
-//         $("#loginModal .modal-header .close").click();
-//         $("#beforeLogin").hide();
-//         $("#afterLogin #welcome span").text("嗨! <%=(String)session.getAttribute("username")%> 您好！");
-//         $("#afterLogin").show();
-//     }
+//  调用CheckLogin()方法判读是否登录
+    var $state=CheckLogin();
+    if ($state){
+        alert("您已经登陆过了！");
+        $("#loginModal .modal-header .close").click();
+        $("#beforeLogin").hide();
+        // $("#afterLogin #welcome span").text("嗨! <%=(String)session.getAttribute("username")%> 您好！");
+        $("#afterLogin").show();
+    }
+    if(!$state){
+        alert("您还没有登陆！")
+    }
 
 //  页面加载完成之后判断哪些是点过赞的哪些是没有点过赞的，点过的显示实心，没点过的默认空心
     $(".support[data-content='1'] span").each(function () {
@@ -68,7 +70,6 @@ jQuery(document).ready(function ( $ ) {
             data: $str,
             dataType: 'json',
             contentType: "application/x-www-form-urlencoded",
-//                processData:false,
             success: function (json) {
 //                  输出查看是否已经获取到回调的值
                 console.log(json.state);
@@ -127,75 +128,87 @@ jQuery(document).ready(function ( $ ) {
 //  点赞功能
     $(".support").each(function () {
         $(this).on('click', function () {
-            var $content = $(this).attr("data-content");
-            var $pointid = $(this).attr("data-pointid");
-//              点赞
-            if ($content == "0") {
-                alert("我是点赞");
-                var $support_data = "这里添加你想要传递的参数，形式和登录一样";
-                console.log($support_data);//控制台查看参数
-                $.ajax({
-                    type: 'POST',
-                    url: '这里添加点赞的时候处理的URL',
-                    data: $support_data,
-                    dataType: 'json',
-                    contentType: "application/x-www-form-urlencoded",
-                    success: function (json) {
-                        //                  输出查看是否已经获取到回调的值
-                        console.log(json.state);
-                        if (json.state == "success") {
-                            $(".support[data-pointid=" + $pointid + "]").attr("data-content", "1");
-                            $(".support[data-pointid=" + $pointid + "] span").removeClass("glyphicon glyphicon-heart-empty").addClass("glyphicon glyphicon-heart");
-                        }
-                        if (json.state == "error") {
-                            alert("对不起, 点赞失败!请重试...");
-                        }
-                    }
-                }).fail(function (xhr, status, errorThrown) {
-                    alert("对不起, 点赞失败!");
-                    console.log("Error: " + errorThrown);
-                    console.log("Status: " + status);
-                    console.dir(xhr);
-                });
+            if(!$state){
+                Redirect();
             }
+            else {
+                var $content = $(this).attr("data-content");
+                var $pointid = $(this).attr("data-pointid");
+//              点赞
+                if ($content == "0") {
+                    alert("我是点赞");
+                    var $support_data = "这里添加你想要传递的参数，形式和登录一样";
+                    console.log($support_data);//控制台查看参数
+                    $.ajax({
+                        type: 'POST',
+                        url: '这里添加点赞的时候处理的URL',
+                        data: $support_data,
+                        dataType: 'json',
+                        contentType: "application/x-www-form-urlencoded",
+                        success: function (json) {
+                            //                  输出查看是否已经获取到回调的值
+                            console.log(json.state);
+                            if (json.state == "success") {
+                                $(".support[data-pointid=" + $pointid + "]").attr("data-content", "1");
+                                $(".support[data-pointid=" + $pointid + "] span").removeClass("glyphicon glyphicon-heart-empty").addClass("glyphicon glyphicon-heart");
+                            }
+                            if (json.state == "error") {
+                                alert("对不起, 点赞失败!请重试...");
+                            }
+                        }
+                    }).fail(function (xhr, status, errorThrown) {
+                        alert("对不起, 点赞失败!");
+                        console.log("Error: " + errorThrown);
+                        console.log("Status: " + status);
+                        console.dir(xhr);
+                    });
+
+                }
 //              取消点赞
-            else if ($content == "1") {
-                alert("我是取消点赞");
-                var $cancel_support_data = "这里添加你想要传递的参数，形式和登录一样";
-                console.log($cancel_support_data);//控制台查看参数
-                $.ajax({
-                    type: 'POST',
-                    url: '这里添加点赞的时候处理的URL',
-                    data: $cancel_support_data,
-                    dataType: 'json',
-                    contentType: "application/x-www-form-urlencoded",
-                    success: function (json) {
-                        //                  输出查看是否已经获取到回调的值
-                        console.log(json.state);
-                        if (json.state == "success") {
-                            $(".support[data-pointid=" + $pointid + "]").attr("data-content", "0");
-                            $(".support[data-pointid=" + $pointid + "] span").removeClass("glyphicon glyphicon-heart").addClass("glyphicon glyphicon-heart-empty");
+                else if ($content == "1") {
+                    alert("我是取消点赞");
+                    var $cancel_support_data = "这里添加你想要传递的参数，形式和登录一样";
+                    console.log($cancel_support_data);//控制台查看参数
+                    $.ajax({
+                        type: 'POST',
+                        url: '这里添加点赞的时候处理的URL',
+                        data: $cancel_support_data,
+                        dataType: 'json',
+                        contentType: "application/x-www-form-urlencoded",
+                        success: function (json) {
+                            //                  输出查看是否已经获取到回调的值
+                            console.log(json.state);
+                            if (json.state == "success") {
+                                $(".support[data-pointid=" + $pointid + "]").attr("data-content", "0");
+                                $(".support[data-pointid=" + $pointid + "] span").removeClass("glyphicon glyphicon-heart").addClass("glyphicon glyphicon-heart-empty");
+                            }
+                            if (json.state == "error") {
+                                alert("对不起, 取消点赞失败!请重试...");
+                            }
                         }
-                        if (json.state == "error") {
-                            alert("对不起, 取消点赞失败!请重试...");
-                        }
-                    }
-                }).fail(function (xhr, status, errorThrown) {
-                    alert("对不起, 取消点赞失败!");
-                    console.log("Error: " + errorThrown);
-                    console.log("Status: " + status);
-                    console.dir(xhr);
-                });
+                    }).fail(function (xhr, status, errorThrown) {
+                        alert("对不起, 取消点赞失败!");
+                        console.log("Error: " + errorThrown);
+                        console.log("Status: " + status);
+                        console.dir(xhr);
+                    });
+                }
             }
         })
     });
 
 //  用户评论
     $(".comment-toggle").on('click',function () {
-        var $userid=$(this).attr("data-userid");
-        var $pointid=$(this).attr("data-pointid");
-        $("#userid").val($userid);
-        $("#pointid").val($pointid);
+        if(!$state){
+            Redirect();
+        }
+        else {
+            $("#commentModal").modal("show");
+            var $userid=$(this).attr("data-userid");
+            var $pointid=$(this).attr("data-pointid");
+            $("#userid").val($userid);
+            $("#pointid").val($pointid);
+        }
     });
 
 //  初始化上传图片插件
@@ -210,9 +223,18 @@ jQuery(document).ready(function ( $ ) {
         browseClass: "btn btn-default" //按钮样式
     });
 
+//   创建热点前校验用户是否登录
+    $(".createHotpointBtn").on('click',function () {
+       if(!$state){
+           Redirect();
+       }
+       else {
+           $("#createHotpoint").modal('show');
+       }
+    });
+
 //  点击提交热点时先提交图片，后提交表单内容
-    $(".HotpointSubmit").on('click',function (event) {
-        //event.preventDefault();//这是阻止表单提交的事件，测试的图片上传的时候可以用
+    $(".HotpointSubmit").on('click',function () {
         $("#input-44").fileinput("upload");
         setTimeout(function () {
             $("#Hotpoint_form").submit();
@@ -250,3 +272,19 @@ jQuery(document).ready(function ( $ ) {
     });
 
 });
+
+//  判断用户是否已登录,如果已经登录过存在有session则直接显示
+function CheckLogin() {
+    if(state=="login_success") {
+         return true;
+    }
+    else {
+        return false;
+    }
+}
+
+//创建热点、评论、点赞操作前验证登录状态，未登录状态的重定向
+function Redirect() {
+    alert("您还没有登陆！请先登录！！！");
+    $(".LoginBtn").click();
+}

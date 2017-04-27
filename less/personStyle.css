@@ -6,6 +6,9 @@ body {
   height: 50px;
   width: auto;
 }
+.logined {
+  display: none;
+}
 .logined .dropdown-toggle {
   height: 50px;
 }
