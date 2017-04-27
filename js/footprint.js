@@ -157,7 +157,6 @@ jQuery(document).ready(function ( $ ) {
                     console.log("Status: " + status);
                     console.dir(xhr);
                 });
-
             }
 //              取消点赞
             else if ($content == "1") {
