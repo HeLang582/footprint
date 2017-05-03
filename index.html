@@ -10,6 +10,10 @@
     <link href="css/indexStyle.css" rel="stylesheet" type="text/css">
     <!--<link href="less/indexStyle.less" rel="stylesheet/less" type="text/css">-->
     <!--<script src="js/less.js" type="text/javascript"></script>-->
+    <script>
+        var state="login_success";
+        alert(state);
+    </script>
 </head>
 <body>
 <div class="container">
@@ -113,152 +117,14 @@
             <div class="ft-article">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">我的好友</a></li>
-                    <li role="presentation"><a href="#systemPrompt" aria-controls="systemPrompt" role="tab" data-toggle="tab">系统推荐</a></li>
+                    <li role="presentation"  class="active">
+                        <a href="#systemPrompt" aria-controls="systemPrompt" role="tab" data-toggle="tab">系统推荐</a>
+                    </li>
+                    <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">我的好友</a></li>
                 </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane active" id="home">
-                        <ul>
-                            <li>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="personPage.html">
-                                            <img class="media-object ft-article-head" src="images/person1.jpg">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">陕西科技大学</h4>
-                                        <small><span class="glyphicon glyphicon-calendar"></span>1天前</small>
-                                        <p>陕西科技大学（Shaanxi University of Science & Technology），位于西安市未央大学园区，
-                                            是“十二五”期间陕西省重点建设的高水平大学，也是中国西部地区唯一一所以轻工为特色的
-                                            多科性大学，入选国家“中西部高校基础能力建设工程“和教育部“卓越工程师教育培养计划
-                                            “，是陕西省人民政府与中国轻工业联合会、中国轻工集团公司共同建设的重点高校。</p>
-                                        <div class="article-photo">
-                                            <div class="item" data-order="1"><img src="images/4.jpg" class="img-responsive"  data-action="zoom"></div>
-                                            <div class="item" data-order="2"><img src="images/1.jpg" class="img-responsive"  data-action="zoom"></div>
-                                            <div class="item" data-order="3"><img src="images/2.jpg" class="img-responsive"  data-action="zoom"></div>
-                                            <div class="item" data-order="4"><img src="images/3.jpg" class="img-responsive"  data-action="zoom"></div>
-                                        </div>
-                                        <div class="ft-article-footer">
-                                            <span class="glyphicon glyphicon-map-marker"></span>
-                                            <span>中国 &bull; 北京</span>
-                                            <div class="comment-menu">
-                                                <a role="button" class="btn support" data-content="0" data-pointid="${point.id}">
-                                                    <span class="glyphicon glyphicon-heart-empty"></span>
-                                                    <small>赞</small>
-                                                </a>
-                                                <a role="button" class="btn comment-toggle"
-                                                   data-userid="${userid}" data-pointid="${point.id}">
-                                                    <span class="glyphicon glyphicon-comment"></span>
-                                                    <small>评论</small>
-                                                </a>
-                                            </div>
-                                            <div class="comment">
-                                                <span class="glyphicon glyphicon-triangle-top triangle"></span>
-                                                <span class="glyphicon glyphicon-heart-empty comment-praise"></span>张三，李四
-                                                <div class="comment-content">
-                                                    <div class="media">
-                                                        <div class="media-left">
-                                                            <a href="#">
-                                                                <img class="media-object comment-head" src="images/personal2.png">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <p>陕西科技大学真是个美丽的地方,我用亲身的体验来向大家证明,这个地方真的很漂亮</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="media">
-                                                        <div class="media-left">
-                                                            <a href="#">
-                                                                <img class="media-object comment-head" src="images/personal2.png">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <p>陕西科技大学真是个美丽的地方,我用亲身的体验来向大家证明,这个地方真的很漂亮</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object ft-article-head" src="images/personal2.png">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Jacob Thornton</h4>
-                                        <small><span class="glyphicon glyphicon-calendar"></span>50年前</small>
-                                        <p>Donec id elit non mi porta gravida at eget metus. Integer posuere erat a ante venenatis
-                                            dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient
-                                            montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum
-                                            at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        <div class="article-photo">
-                                            <div class="item" data-order="1"><img src="images/6.jpg" class="img-responsive"  data-action="zoom"></div>
-                                            <div class="item" data-order="2"><img src="images/7.jpg" class="img-responsive"  data-action="zoom"></div>
-                                            <div class="item" data-order="3"><img src="images/8.jpg" class="img-responsive"  data-action="zoom"></div>
-                                            <div class="item" data-order="4"><img src="images/9.jpg" class="img-responsive"  data-action="zoom"></div>
-                                        </div>
-                                        <div class="ft-article-footer">
-                                            <span class="glyphicon glyphicon-map-marker"></span>
-                                            <span>中国 &bull; 北京</span>
-                                            <div class="comment-menu">
-                                                <a role="button" class="btn support" data-content="0" data-pointid="6">
-                                                    <span class="glyphicon glyphicon-heart-empty"></span>
-                                                    <small>赞</small>
-                                                </a>
-                                                <a role="button" class="btn comment-toggle"
-                                                   data-userid="${userid}" data-pointid="${point.id}">
-                                                    <span class="glyphicon glyphicon-comment"></span>
-                                                    <small>评论</small>
-                                                </a>
-                                            </div>
-                                            <div class="comment">
-                                                <span class="glyphicon glyphicon-triangle-top triangle"></span>
-                                                <span class="glyphicon glyphicon-heart-empty comment-praise"></span>张三，李四
-                                                <div class="comment-content">
-                                                    <div class="media">
-                                                        <div class="media-left">
-                                                            <a href="#">
-                                                                <img class="media-object comment-head" src="images/person1.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <p> Donec id elit non mi porta gravida at eget metus. Vivamus sagittis
-                                                                lacus vel augue laoreet rutrum faucibus dolor auctor. Donec
-                                                                ullamcorper nulla non metus auctor fringilla. Praesent commodo
-                                                                cursus magna, vel scelerisque nisl consectetur et. Sed posuere
-                                                                consectetur est at lobortis.</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="media">
-                                                        <div class="media-left">
-                                                            <a href="#">
-                                                                <img class="media-object comment-head" src="images/personal2.png">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus,
-                                                                tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-                                                                massa justo sit amet risus.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
                     <div role="tabpanel" class="tab-pane" id="systemPrompt">
                         <ul>
                             <li>
@@ -285,7 +151,7 @@
                                             <span class="glyphicon glyphicon-map-marker"></span>
                                             <span>中国 &bull; 北京</span>
                                             <div class="comment-menu">
-                                                <a role="button" class="btn support" data-content="0" data-pointid="3">
+                                                <a role="button" class="btn support" data-content="0" data-userid="${userid}" data-pointid="${point.id}">
                                                     <span class="glyphicon glyphicon-heart-empty"></span>
                                                     <small>赞</small>
                                                 </a>
@@ -295,77 +161,10 @@
                                                     <small>评论</small>
                                                 </a>
                                             </div>
-                                            <div class="comment">
+                                            <div class="comment"  data-pointid="${point.id}">
                                                 <span class="glyphicon glyphicon-triangle-top triangle"></span>
-                                                <span class="glyphicon glyphicon-heart-empty comment-praise"></span>张三，李四
-                                                <div class="comment-content">
-                                                    <div class="media">
-                                                        <div class="media-left">
-                                                            <a href="#">
-                                                                <img class="media-object comment-head" src="images/person1.jpg">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <p> Donec id elit non mi porta gravida at eget metus. Vivamus sagittis
-                                                                lacus vel augue laoreet rutrum faucibus dolor auctor. Donec
-                                                                ullamcorper nulla non metus auctor fringilla. Praesent commodo
-                                                                cursus magna, vel scelerisque nisl consectetur et. Sed posuere
-                                                                consectetur est at lobortis.</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="media">
-                                                        <div class="media-left">
-                                                            <a href="#">
-                                                                <img class="media-object comment-head" src="images/personal2.png">
-                                                            </a>
-                                                        </div>
-                                                        <div class="media-body">
-                                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus,
-                                                                tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-                                                                massa justo sit amet risus.</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object ft-article-head" src="images/personal2.png">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Jacob Thornton</h4>
-                                        <small><span class="glyphicon glyphicon-calendar"></span>100年前</small>
-                                        <p>Donec id elit non mi porta gravida at eget metus. Integer posuere erat a ante venenatis
-                                            dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient
-                                            montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum
-                                            at eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        <div class="article-photo">
-                                            <div class="item" data-order="1"><img src="images/6.jpg" class="img-responsive"  data-action="zoom"></div>
-                                            <div class="item" data-order="2"><img src="images/7.jpg" class="img-responsive"  data-action="zoom"></div>
-                                            <div class="item" data-order="3"><img src="images/8.jpg" class="img-responsive"  data-action="zoom"></div>
-                                            <div class="item" data-order="4"><img src="images/9.jpg" class="img-responsive"  data-action="zoom"></div>
-                                        </div>
-                                        <div class="ft-article-footer">
-                                            <span class="glyphicon glyphicon-map-marker"></span>
-                                            <span>中国 &bull; 北京</span>
-                                            <div class="comment-menu">
-                                                <a role="button" class="btn support" data-content="1">
-                                                    <span class="glyphicon glyphicon-heart-empty"></span><small>赞</small>
-                                                </a>
-                                                <a role="button" class="btn" data-toggle="modal" data-target="#commentModal">
-                                                    <span class="glyphicon glyphicon-comment"></span><small>评论</small>
-                                                </a>
-                                            </div>
-                                            <div class="comment">
-                                                <span class="glyphicon glyphicon-triangle-top triangle"></span>
-                                                <span class="glyphicon glyphicon-heart-empty comment-praise"></span>张三，李四
+                                                <span class="glyphicon glyphicon-heart-empty comment-praise"></span>
+                                                <span class="praised-name">张三，李四</span>
                                                 <div class="comment-content">
                                                     <div class="media">
                                                         <div class="media-left">
@@ -402,6 +201,76 @@
                             </li>
                         </ul>
                     </div>
+                    <div role="tabpanel" class="tab-pane active" id="home">
+                        <ul>
+                            <li>
+                                <div class="media">
+                                    <div class="media-left">
+                                        <a href="personPage.html">
+                                            <img class="media-object ft-article-head" src="images/person1.jpg">
+                                        </a>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">陕西科技大学</h4>
+                                        <small><span class="glyphicon glyphicon-calendar"></span>1天前</small>
+                                        <p>陕西科技大学（Shaanxi University of Science & Technology），位于西安市未央大学园区，
+                                            是“十二五”期间陕西省重点建设的高水平大学，也是中国西部地区唯一一所以轻工为特色的
+                                            多科性大学，入选国家“中西部高校基础能力建设工程“和教育部“卓越工程师教育培养计划
+                                            “，是陕西省人民政府与中国轻工业联合会、中国轻工集团公司共同建设的重点高校。</p>
+                                        <div class="article-photo">
+                                            <div class="item" data-order="1"><img src="images/4.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="2"><img src="images/1.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="3"><img src="images/2.jpg" class="img-responsive"  data-action="zoom"></div>
+                                            <div class="item" data-order="4"><img src="images/3.jpg" class="img-responsive"  data-action="zoom"></div>
+                                        </div>
+                                        <div class="ft-article-footer">
+                                            <span class="glyphicon glyphicon-map-marker"></span>
+                                            <span>中国 &bull; 北京</span>
+                                            <div class="comment-menu">
+                                                <a role="button" class="btn support" data-content="0" data-pointid="${point.id}" data-userid="${userid}">
+                                                    <span class="glyphicon glyphicon-heart-empty"></span>
+                                                    <small>赞</small>
+                                                </a>
+                                                <a role="button" class="btn comment-toggle"
+                                                   data-userid="${userid}" data-pointid="${point.id}">
+                                                    <span class="glyphicon glyphicon-comment"></span>
+                                                    <small>评论</small>
+                                                </a>
+                                            </div>
+                                            <div class="comment" data-pointid="${point.id}">
+                                                <span class="glyphicon glyphicon-triangle-top triangle"></span>
+                                                <span class="glyphicon glyphicon-heart-empty comment-praise"></span>张三，李四
+                                                <div class="comment-content">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object comment-head" src="images/personal2.png">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <p>陕西科技大学真是个美丽的地方,我用亲身的体验来向大家证明,这个地方真的很漂亮</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                            <a href="#">
+                                                                <img class="media-object comment-head" src="images/personal2.png">
+                                                            </a>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <p>陕西科技大学真是个美丽的地方,我用亲身的体验来向大家证明,这个地方真的很漂亮</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -512,19 +381,20 @@
                 <img src="images/footprint_logo.png" class="img-responsive login-logo">
             </div>
             <div class="modal-body">
-                <form>
+                <form method="post" action="">
                     <div class="form-group">
-                        <input type="text" id="userName" class="form-control" placeholder="用户名">
+                        <input type="text" name="username" id="userName" class="form-control" placeholder="用户名">
                     </div>
                     <div class="form-group">
-                        <input type="password" id="password" class="form-control" placeholder="密码">
+                        <input type="password" name="password" id="password" class="form-control" placeholder="密码">
                     </div>
                     <div class="checkbox">
                         <label>
                             <input type="checkbox">记住密码
                         </label>
                     </div>
-                    <button type="button" id="loginSubmit" class="btn btn-default">用户登录</button>
+                    <input type="submit" value="用户登录">
+                    <button type="submit" id="loginSubmit" class="btn btn-default">用户登录</button>
                     <label class="forget-password">
                         <a href="#">忘记密码？</a>
                     </label>
@@ -581,9 +451,9 @@
                         <input id="pointid" name="pointid" type="hidden" class="form-control">
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" rows="4" placeholder="吐槽点什么..."></textarea>
+                        <textarea id="comment_text" name="comment" class="form-control" rows="4" placeholder="吐槽点什么..."></textarea>
                     </div>
-                    <button type="submit" id="commentSubmit" class="btn btn-default">提交评论</button>
+                    <button type="button" id="commentSubmit" class="btn btn-default">提交评论</button>
                 </form>
             </div>
         </div>

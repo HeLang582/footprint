@@ -36,17 +36,17 @@ jQuery(document).ready(function ( $ ) {
         }
     );
 
-//  调用CheckLogin()方法判读是否登录
+    //  调用CheckLogin()方法判读是否登录
     var $state=CheckLogin();
     if ($state){
-        alert("您已经登陆过了！");
+
         $("#loginModal .modal-header .close").click();
         $("#beforeLogin").hide();
-        // $("#afterLogin #welcome span").text("嗨! <%=(String)session.getAttribute("username")%> 您好！");
+        $("#afterLogin #welcome span").text("嗨!"+username+" 您好！");
         $("#afterLogin").show();
     }
     if(!$state){
-        alert("您还没有登陆！")
+
     }
 
 //  页面加载完成之后判断哪些是点过赞的哪些是没有点过赞的，点过的显示实心，没点过的默认空心
@@ -59,17 +59,18 @@ jQuery(document).ready(function ( $ ) {
 //            var loginFormData=new FormData();
 //            loginFormData.append('userName',$('#userName').val());
 //            loginFormData.append('password',$('#password').val());
-        var $str = "userName=" + $('#userName').val() + "&" + "password=" + $('#password').val();
+        var $str = "username=" + $('#username').val() + "&" + "password=" + $('#password').val();
         console.log($str);
         //console.log(typeof loginFormData);
-        console.log($('#userName').val());
+        console.log($('#username').val());
         console.log($('#password').val());
         $.ajax({
             type: 'POST',
-            url: 'http://192.168.20.88/class/index.php',
+            url: 'login.do',
             data: $str,
             dataType: 'json',
             contentType: "application/x-www-form-urlencoded",
+//                processData:false,
             success: function (json) {
 //                  输出查看是否已经获取到回调的值
                 console.log(json.state);
@@ -98,7 +99,7 @@ jQuery(document).ready(function ( $ ) {
         console.log($registerStr);
         $.ajax({
             type: 'POST',
-            url: 'http://192.168.20.88/class/register.php',
+            url: 'regist.do',
             data: $registerStr,
             dataType: "json",
             contentType: "application/x-www-form-urlencoded",
@@ -120,7 +121,7 @@ jQuery(document).ready(function ( $ ) {
     $(".exit").on('click', function () {
         $("#beforeLogin").show();
         $("#afterLogin").hide();
-        $.get("在这里填上你要访问的URL");
+        $.get("logout.do");
 //          清空session
         $.session.clear();
     })
@@ -134,23 +135,40 @@ jQuery(document).ready(function ( $ ) {
             else {
                 var $content = $(this).attr("data-content");
                 var $pointid = $(this).attr("data-pointid");
+                var $userid = $(this).attr("data-userid");
+                //给传递后台的数据赋值，组成字符串
+                var $support_data = "userid="+$userid+"&pointid="+$pointid;
+                //控制台查看
+                console.log($support_data);
+                //获取到点赞人的文本
+                var $comment_praise_str=$(".comment[data-pointid='"+$pointid+"'] .praised-name").text();
+                //将文本转换为数组
+                var $comment_praise_arr=$comment_praise_str.split(" ,");
+
 //              点赞
                 if ($content == "0") {
                     alert("我是点赞");
-                    var $support_data = "这里添加你想要传递的参数，形式和登录一样";
-                    console.log($support_data);//控制台查看参数
                     $.ajax({
                         type: 'POST',
-                        url: '这里添加点赞的时候处理的URL',
+                        url: 'savegood.do',
                         data: $support_data,
                         dataType: 'json',
                         contentType: "application/x-www-form-urlencoded",
                         success: function (json) {
                             //                  输出查看是否已经获取到回调的值
                             console.log(json.state);
+                            console.log(json.nickname);
                             if (json.state == "success") {
                                 $(".support[data-pointid=" + $pointid + "]").attr("data-content", "1");
                                 $(".support[data-pointid=" + $pointid + "] span").removeClass("glyphicon glyphicon-heart-empty").addClass("glyphicon glyphicon-heart");
+                                var praised_name=json.nickname;
+                                $comment_praise_arr.push(praised_name);
+                                if ($comment_praise_arr.length==1){
+                                    $(".comment[data-pointid='"+$pointid+"'] .praised-name").text($comment_praise_arr[0]);
+                                }
+                                else {
+                                    $(".comment[data-pointid='"+$pointid+"'] .praised-name").text($comment_praise_arr.join(" ,"));
+                                }
                             }
                             if (json.state == "error") {
                                 alert("对不起, 点赞失败!请重试...");
@@ -167,20 +185,35 @@ jQuery(document).ready(function ( $ ) {
 //              取消点赞
                 else if ($content == "1") {
                     alert("我是取消点赞");
-                    var $cancel_support_data = "这里添加你想要传递的参数，形式和登录一样";
-                    console.log($cancel_support_data);//控制台查看参数
                     $.ajax({
                         type: 'POST',
-                        url: '这里添加点赞的时候处理的URL',
-                        data: $cancel_support_data,
+                        url: 'deletegood.do',
+                        data: $support_data,
                         dataType: 'json',
                         contentType: "application/x-www-form-urlencoded",
                         success: function (json) {
-                            //                  输出查看是否已经获取到回调的值
+                            //              输出查看是否已经获取到回调的值
                             console.log(json.state);
                             if (json.state == "success") {
                                 $(".support[data-pointid=" + $pointid + "]").attr("data-content", "0");
                                 $(".support[data-pointid=" + $pointid + "] span").removeClass("glyphicon glyphicon-heart").addClass("glyphicon glyphicon-heart-empty");
+                                //对点赞人数组进行删除操作
+                                var indexOf=null;
+                                for (var i=0;i<$comment_praise_arr.length;i++){
+                                    if ($comment_praise_arr[i]==json.nickname){
+                                        indexOf=i;
+                                        break;
+                                    }
+                                }
+                                $comment_praise_arr.splice(indexOf,1);
+                                console.log($comment_praise_arr);
+                                if($comment_praise_arr.length=1)
+                                {
+                                    $(".comment[data-pointid='"+$pointid+"'] .praised-name").text($comment_praise_arr[0]);
+                                }
+                                else {
+                                    $(".comment[data-pointid='"+$pointid+"'] .praised-name").text($comment_praise_arr.join(" ,"));
+                                }
                             }
                             if (json.state == "error") {
                                 alert("对不起, 取消点赞失败!请重试...");
@@ -197,7 +230,7 @@ jQuery(document).ready(function ( $ ) {
         })
     });
 
-//  用户评论
+//  用户评论前登录状态判断
     $(".comment-toggle").on('click',function () {
         if(!$state){
             Redirect();
@@ -211,11 +244,45 @@ jQuery(document).ready(function ( $ ) {
         }
     });
 
+    //  提交评论内容
+    $("#commentSubmit").on('click',function () {
+        var $comment_pointid=$("#pointid").val();
+        var $comment_userid=$("#userid").val();
+        var $comment_text=$("#comment_text").val();
+        var $comment_submit_str= "ownerid="+$comment_userid+"&pointid="+$comment_pointid+"&comment="+$comment_text;
+        console.log($comment_submit_str);
+        var $appendElement="<div class='media'><div class='media-left'><a href='#'><img class='media-object comment-head' src='images/person1.jpg'></a></div><div class='media-body'><p>"+nickname+":"+$comment_text+"      刚刚</p></div></div>";
+        $.ajax({
+            type: 'POST',
+            url: 'savecomment.do',
+            data: $comment_submit_str,
+            dataType: 'json',
+            contentType: "application/x-www-form-urlencoded",
+            success: function (json) {
+                //                  输出查看是否已经获取到回调的值
+                console.log(json.state);
+                if (json.state == "success") {
+                    $("#comment_text").val("");
+                    $("#commentModal .modal-header .close").click();
+                    $(".comment[data-pointid='"+$comment_pointid+"'] .comment-content").append($appendElement);
+                }
+                if (json.state == "error") {
+                    alert("对不起, 评论失败!请重试...");
+                }
+            }
+        }).fail(function (xhr, status, errorThrown) {
+            alert("对不起, 网络原因评论失败!");
+            console.log("Error: " + errorThrown);
+            console.log("Status: " + status);
+            console.dir(xhr);
+        });
+    });
+
 //  初始化上传图片插件
     $("#input-44").fileinput({
         language: 'zh', //设置语言
         showUpload: false, //是否显示上传按钮
-        uploadUrl: "这里填上你的处理上传的函数",
+        uploadUrl: "fileup2.do",
 //            deleteUrl:"处理删除的路径",
         uploadAsync: false, //默认异步上传
         maxFilePreviewSize: 10240,
@@ -225,16 +292,17 @@ jQuery(document).ready(function ( $ ) {
 
 //   创建热点前校验用户是否登录
     $(".createHotpointBtn").on('click',function () {
-       if(!$state){
-           Redirect();
-       }
-       else {
-           $("#createHotpoint").modal('show');
-       }
+        if(!$state){
+            Redirect();
+        }
+        else {
+            $("#createHotpoint").modal('show');
+        }
     });
 
 //  点击提交热点时先提交图片，后提交表单内容
-    $(".HotpointSubmit").on('click',function () {
+    $(".HotpointSubmit").on('click',function (event) {
+        //event.preventDefault();//这是阻止表单提交的事件，测试的图片上传的时候可以用
         $("#input-44").fileinput("upload");
         setTimeout(function () {
             $("#Hotpoint_form").submit();
@@ -276,7 +344,7 @@ jQuery(document).ready(function ( $ ) {
 //  判断用户是否已登录,如果已经登录过存在有session则直接显示
 function CheckLogin() {
     if(state=="login_success") {
-         return true;
+        return true;
     }
     else {
         return false;
