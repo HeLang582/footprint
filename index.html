@@ -7,12 +7,18 @@
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/zoom.css" rel="stylesheet" type="text/css">
     <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css">
-    <link href="css/indexStyle.css" rel="stylesheet" type="text/css">
-    <!--<link href="less/indexStyle.less" rel="stylesheet/less" type="text/css">-->
-    <!--<script src="js/less.js" type="text/javascript"></script>-->
+    <!--<link href="css/indexStyle.css" rel="stylesheet" type="text/css">-->
+    <link href="less/indexStyle.less" rel="stylesheet/less" type="text/css">
+    <script src="js/less.js" type="text/javascript"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
     <script>
         var state="login_success";
-        alert(state);
     </script>
 </head>
 <body>
@@ -125,7 +131,7 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane" id="systemPrompt">
+                    <div role="tabpanel" class="tab-pane  active" id="systemPrompt">
                         <ul>
                             <li>
                                 <div class="media">
@@ -136,7 +142,6 @@
                                     </div>
                                     <div class="media-body">
                                         <h4 class="media-heading">Jacob Thornton</h4>
-                                        <small><span class="glyphicon glyphicon-calendar"></span>50年前</small>
                                         <p>Donec id elit non mi porta gravida at eget metus. Integer posuere erat a ante venenatis
                                             dapibus posuere velit aliquet. Cum sociis natoque penatibus et magnis dis parturient
                                             montes, nascetur ridiculus mus. Morbi leo risus, porta ac consectetur ac, vestibulum
@@ -147,24 +152,26 @@
                                             <div class="item" data-order="3"><img src="images/8.jpg" class="img-responsive"  data-action="zoom"></div>
                                             <div class="item" data-order="4"><img src="images/9.jpg" class="img-responsive"  data-action="zoom"></div>
                                         </div>
+
                                         <div class="ft-article-footer">
                                             <span class="glyphicon glyphicon-map-marker"></span>
-                                            <span>中国 &bull; 北京</span>
+                                            <span>中国 &bull; 北京&bull; 北京&bull; 北京&bull; 北京&bull; 北京&bull; 北京&bull; 北京&bull; 北京&bull; 北京</span>
                                             <div class="comment-menu">
-                                                <a role="button" class="btn support" data-content="0" data-userid="${userid}" data-pointid="${point.id}">
-                                                    <span class="glyphicon glyphicon-heart-empty"></span>
-                                                    <small>赞</small>
-                                                </a>
+                                                <small><span class="glyphicon glyphicon-calendar"></span>50年前</small>
                                                 <a role="button" class="btn comment-toggle"
                                                    data-userid="${userid}" data-pointid="${point.id}">
                                                     <span class="glyphicon glyphicon-comment"></span>
                                                     <small>评论</small>
                                                 </a>
+                                                <a role="button" class="btn support" data-content="0" data-userid="${userid}" data-pointid="${point.id}">
+                                                    <span class="glyphicon glyphicon-heart-empty"></span>
+                                                    <small>赞</small>
+                                                </a>
                                             </div>
                                             <div class="comment"  data-pointid="${point.id}">
                                                 <span class="glyphicon glyphicon-triangle-top triangle"></span>
                                                 <span class="glyphicon glyphicon-heart-empty comment-praise"></span>
-                                                <span class="praised-name">张三，李四</span>
+                                                <span class="praised-name"><a href="#">张三</a>,<a href="#">李四</a></span>
                                                 <div class="comment-content">
                                                     <div class="media">
                                                         <div class="media-left">
@@ -201,7 +208,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div role="tabpanel" class="tab-pane active" id="home">
+                    <div role="tabpanel" class="tab-pane" id="home">
                         <ul>
                             <li>
                                 <div class="media">

@@ -42,7 +42,7 @@ jQuery(document).ready(function ( $ ) {
 
         $("#loginModal .modal-header .close").click();
         $("#beforeLogin").hide();
-        $("#afterLogin #welcome span").text("嗨!"+username+" 您好！");
+        $("#afterLogin #welcome span").text("嗨! Girl 您好！");
         $("#afterLogin").show();
     }
     if(!$state){
@@ -141,10 +141,11 @@ jQuery(document).ready(function ( $ ) {
                 //控制台查看
                 console.log($support_data);
                 //获取到点赞人的文本
-                var $comment_praise_str=$(".comment[data-pointid='"+$pointid+"'] .praised-name").text();
+                var $comment_praise_str=$(".comment[data-pointid='"+$pointid+"'] .praised-name").html();
+                console.log($comment_praise_str);
                 //将文本转换为数组
-                var $comment_praise_arr=$comment_praise_str.split(" ,");
-
+                var $comment_praise_arr=$comment_praise_str.split(",");
+                console.log($comment_praise_arr);
 //              点赞
                 if ($content == "0") {
                     alert("我是点赞");
@@ -161,13 +162,13 @@ jQuery(document).ready(function ( $ ) {
                             if (json.state == "success") {
                                 $(".support[data-pointid=" + $pointid + "]").attr("data-content", "1");
                                 $(".support[data-pointid=" + $pointid + "] span").removeClass("glyphicon glyphicon-heart-empty").addClass("glyphicon glyphicon-heart");
-                                var praised_name=json.nickname;
+                                var praised_name="<a href='"+$userid+"'>"+json.nickname+"</a>";
                                 $comment_praise_arr.push(praised_name);
                                 if ($comment_praise_arr.length==1){
-                                    $(".comment[data-pointid='"+$pointid+"'] .praised-name").text($comment_praise_arr[0]);
+                                    $(".comment[data-pointid='"+$pointid+"'] .praised-name").html($comment_praise_arr[0]);
                                 }
                                 else {
-                                    $(".comment[data-pointid='"+$pointid+"'] .praised-name").text($comment_praise_arr.join(" ,"));
+                                    $(".comment[data-pointid='"+$pointid+"'] .praised-name").html($comment_praise_arr.join(","));
                                 }
                             }
                             if (json.state == "error") {
@@ -199,20 +200,21 @@ jQuery(document).ready(function ( $ ) {
                                 $(".support[data-pointid=" + $pointid + "] span").removeClass("glyphicon glyphicon-heart").addClass("glyphicon glyphicon-heart-empty");
                                 //对点赞人数组进行删除操作
                                 var indexOf=null;
+                                var praised_name="<a href='"+$userid+"'>"+json.nickname+"</a>";
                                 for (var i=0;i<$comment_praise_arr.length;i++){
-                                    if ($comment_praise_arr[i]==json.nickname){
+                                    if ($comment_praise_arr[i]==praised_name){
                                         indexOf=i;
                                         break;
                                     }
                                 }
                                 $comment_praise_arr.splice(indexOf,1);
                                 console.log($comment_praise_arr);
-                                if($comment_praise_arr.length=1)
+                                if($comment_praise_arr.length==1)
                                 {
-                                    $(".comment[data-pointid='"+$pointid+"'] .praised-name").text($comment_praise_arr[0]);
+                                    $(".comment[data-pointid='"+$pointid+"'] .praised-name").html($comment_praise_arr[0]);
                                 }
                                 else {
-                                    $(".comment[data-pointid='"+$pointid+"'] .praised-name").text($comment_praise_arr.join(" ,"));
+                                    $(".comment[data-pointid='"+$pointid+"'] .praised-name").html($comment_praise_arr.join(" ,"));
                                 }
                             }
                             if (json.state == "error") {
@@ -339,7 +341,142 @@ jQuery(document).ready(function ( $ ) {
         $(".map-box").show();
     });
 
+    //     朋友主页相关事件（判断是否已关注对方）
+    $(".attention[data-content='1']").each(function () {
+        $(this).addClass("attention-btn");
+        $(this).text("已关注")
+    });
+    //     朋友主页（选项卡点击效果）
+    $(".select-item li[data-target='friend-index']").on('click', function () {
+        $(this).addClass("item-active").siblings().removeClass("item-active");
+        $(".friend-index").show();
+        $(".ft-article").hide();
+        $(".photo-edit").hide();
+        $(".map-box").hide();
+    });
+    $(".select-item li[data-target='friend-ft-article']").on('click', function () {
+        $(this).addClass("item-active").siblings().removeClass("item-active");
+        $(".friend-index").hide();
+        $(".ft-article").show();
+        $(".photo-edit").hide();
+        $(".map-box").hide();
+    });
+    $(".select-item li[data-target='friend-photo-edit']").on('click', function () {
+        $(this).addClass("item-active").siblings().removeClass("item-active");
+        $(".friend-index").hide();
+        $(".ft-article").hide();
+        $(".photo-edit").show();
+        $(".map-box").hide();
+    });
+    $(".select-item li[data-target='friend-map-box']").on('click', function () {
+        $(this).addClass("item-active").siblings().removeClass("item-active");
+        $(".friend-index").hide();
+        $(".ft-article").hide();
+        $(".photo-edit").hide();
+        $(".map-box").show();
+    });
+    //    关注事件
+    $(".attention").each(function () {
+        $(this).on('click', function () {
+            if(!$state){
+                Redirect();
+            }
+            else {
+                var $content = $(this).attr("data-content");
+                var $staruserid = $(this).attr("data-staruserid");
+                //给传递后台的数据赋值，组成字符串
+                var $attention_data = "staruserid="+$staruserid;
+                //控制台查看
+                console.log($attention_data);
+//              关注
+                if ($content == "0") {
+                    alert("我是关注");
+                    $.ajax({
+                        type: 'POST',
+                        url: '',
+                        data: $attention_data,
+                        dataType: 'json',
+                        contentType: "application/x-www-form-urlencoded",
+                        success: function (json) {
+                            //   输出查看是否已经获取到回调的值
+                            console.log(json.state);
+                            if (json.state == "looksuccess") {
+                                $(".attention[data-staruserid=" + $staruserid + "]").attr("data-content", "1");
+                                $(".attention[data-staruserid=" + $staruserid + "]").addClass("attention-btn");
+                                $(".attention[data-staruserid=" + $staruserid + "]").text("已关注");
+                            }
+                            if (json.state == "error") {
+                                alert("对不起, 关注失败!请重试...");
+                            }
+                        }
+                    }).fail(function (xhr, status, errorThrown) {
+                        alert("对不起, 关注失败!");
+                        console.log("Error: " + errorThrown);
+                        console.log("Status: " + status);
+                        console.dir(xhr);
+                    });
+                }
+//              取消关注
+                else if ($content == "1") {
+                    alert("我是取消关注");
+                    $.ajax({
+                        type: 'POST',
+                        url: '',
+                        data: $attention_data,
+                        dataType: 'json',
+                        contentType: "application/x-www-form-urlencoded",
+                        success: function (json) {
+                            //              输出查看是否已经获取到回调的值
+                            console.log(json.state);
+                            if (json.state == "unlooksuccess") {
+                                $(".attention[data-staruserid=" + $staruserid + "]").attr("data-content", "0");
+                                $(".attention[data-staruserid=" + $staruserid + "]").removeClass("attention-btn");
+                                $(".attention[data-staruserid=" + $staruserid + "]").text(" + 关注");
+                            }
+                            if (json.state == "error") {
+                                alert("对不起, 取消关注操作失败!请重试...");
+                            }
+                        }
+                    }).fail(function (xhr, status, errorThrown) {
+                        alert("对不起, 取消关注操作失败!");
+                        console.log("Error: " + errorThrown);
+                        console.log("Status: " + status);
+                        console.dir(xhr);
+                    });
+                }
+            }
+        })
+    });
+
+   //     关注页面的推荐关注人个人信息字符串长度截取控制
+    $(".friends-item-info span").each(function () {
+        var info_str=$(this).text();
+        if(info_str.length>11){
+            $(this).text(info_str.substr(0,11)+"...")
+        }
+    });
+    //    关注页面选项卡事件
+    $(".friends-select div[data-target='friends-recommend']").on("click",function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        $(".friends-recommend").show();
+        $(".his-friends").hide();
+        $(".his-fans").hide();
+    });
+    $(".friends-select div[data-target='his-friends']").on("click",function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        $(".friends-recommend").hide();
+        $(".his-friends").show();
+        $(".his-fans").hide();
+    });
+    $(".friends-select div[data-target='his-fans']").on("click",function () {
+        $(this).addClass("active").siblings().removeClass("active");
+        $(".friends-recommend").hide();
+        $(".his-friends").hide();
+        $(".his-fans").show();
+    });
 });
+
+
 
 //  判断用户是否已登录,如果已经登录过存在有session则直接显示
 function CheckLogin() {

@@ -1,0 +1,113 @@
+.row{
+  margin: 0;
+}
+.friends-nav{
+  width: 100%;
+  height: 50px;
+  background-color: #005e3c;
+  line-height: 50px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.friends-select{
+  text-align: center;
+  .item{
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    padding: 5px 15px;
+    margin: 0 20px;
+  }
+  .active{
+    border-bottom: 2px solid #005e3c;
+    color: #005e3c;
+  }
+}
+
+.friends-recommend{
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.friends-recommend-title{
+  height: 36px;
+  line-height: 36px;
+  padding-left: 10px;
+  border-left: 3px solid #005e3c;
+  margin: 5px 0;
+}
+
+.friends-item{
+  width: 100%;
+  height: 80px;
+  border-top: 1px dashed #eee;
+  padding: 10px 0;
+  .friends-item-avatar{
+    float: left;
+    width: 60px;
+    overflow: hidden;
+    img{
+      width: 60px;
+      height: auto;
+      border-radius: 60px;
+    }
+  }
+  .friends-item-info{
+    float: left;
+    margin-left: 10px;
+    height: 60px;
+    width: 160px;
+    line-height: 20px;
+    span{
+      line-height: 20px;
+      height: 20px;
+      display: block;
+    }
+  }
+  .friends-item-attention{
+    height: 60px;
+    width: 60px;
+    line-height: 60px;
+    float: right;
+    .attention{
+      background-color: #005e3c;
+      color: white;
+      border-color: #005e3c;
+    }
+    .attention-btn{
+      background-color: white;
+      color: #005e3c;
+      border-color: #005e3c;
+    }
+  }
+}
+
+.his-friends{
+  display: none;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+.his-fans{
+  display: none;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+@media screen and (max-width: 765px){
+  body{
+    padding-top: 55px;
+  }
+  .friends-nav{
+    height: 40px;
+    line-height: 40px;
+  }
+  .friends-select{
+    .item{
+      margin: 0;
+    }
+
+  }
+}

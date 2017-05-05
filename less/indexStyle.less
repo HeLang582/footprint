@@ -160,12 +160,6 @@ body{
            h4{
              float: left;
            }
-           small{
-             color: #737373;
-             display: block;
-             float: right;
-             padding-right: 5px;
-           }
            p{
              clear: both;
              line-height: 1.5em;
@@ -187,11 +181,13 @@ body{
              position: relative;
              top:-10px;
              .comment-menu{
-               display: inline-block;
-               float: right;
-               margin-top: -5px;
+               display: block;
+               height: 34px;
+               line-height: 34px;
                a{
                  color: #737373;
+                 display: inline-block;
+                 float: right;
                  small{
                    display: inline-block;
                    margin-left: 5px;
@@ -203,7 +199,7 @@ body{
              }
              .comment{
                padding: 5px;
-               margin-top: 10px;
+               margin-top: 5px;
                margin-right: 10px;
                background-color: @comment-bgcolor;
                .triangle{

@@ -61,6 +61,34 @@ body {
 .personal-padding .personal-info .ps-info a:hover {
   text-decoration: none;
 }
+.personal-padding .personal-info .ps-info .attention-box ul {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+.personal-padding .personal-info .ps-info .attention-box ul li {
+  float: left;
+  list-style: none;
+  padding: 0 15px;
+  cursor: pointer;
+  border-right: 1px solid #eee;
+}
+.personal-padding .personal-info .ps-info .attention-box ul li:last-child {
+  border-right: none;
+}
+.personal-padding .personal-info .ps-info .attention-box ul .item-active {
+  color: #005e3c;
+}
+.personal-padding .personal-info .ps-info .attention-box .attention {
+  background-color: #005e3c;
+  color: white;
+  border-color: #005e3c;
+}
+.personal-padding .personal-info .ps-info .attention-box .attention-btn {
+  background-color: white;
+  color: #005e3c;
+  border-color: #005e3c;
+}
 .personal-padding .personal-info .ps-info .select-item ul {
   display: inline-block;
   padding: 0;
@@ -69,7 +97,7 @@ body {
 .personal-padding .personal-info .ps-info .select-item ul li {
   float: left;
   list-style: none;
-  padding: 0 25px;
+  padding: 0 20px;
   cursor: pointer;
   border-right: 1px solid #eee;
 }
@@ -78,6 +106,31 @@ body {
 }
 .personal-padding .personal-info .ps-info .select-item ul .item-active {
   color: #005e3c;
+}
+.friend-title {
+  margin: 15px 0;
+  padding: 3px 5px;
+  width: auto;
+  border-left: 3px solid #005e3c;
+}
+.friend-title span {
+  font-size: 15px;
+}
+.friend-person-info {
+  border-top: 1px dashed #ddd;
+  border-radius: 3px;
+  color: #737373;
+}
+.friend-person-info ul {
+  margin-left: -25px;
+}
+.friend-person-info ul li {
+  list-style: none;
+  line-height: 30px;
+}
+.friend-person-info ul li span {
+  display: inline-block;
+  margin-right: 10px;
 }
 .about-edit {
   display: none;
@@ -115,7 +168,7 @@ body {
   padding: 4px 2px;
 }
 .ft-article {
-  margin: 10px 0;
+  margin: 20px 0;
   padding: 0;
   border: 1px solid #ddd;
   border-radius: 3px;
@@ -211,15 +264,114 @@ body {
   padding-top: 5px;
   text-indent: 0;
 }
+.ft-friend-article {
+  border-top: 1px dashed #ddd;
+  margin: 10px 0;
+  padding: 0;
+  border-radius: 3px;
+}
+.ft-friend-article ul {
+  border-bottom: 1px dashed #ddd;
+  padding-bottom: 25px;
+  margin-top: 30px;
+  margin-left: -30px;
+}
+.ft-friend-article ul li {
+  margin-bottom: 30px;
+  list-style: none;
+}
+.ft-friend-article ul li .media-left .ft-article-head {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+}
+.ft-friend-article ul li .media-body h4 {
+  float: left;
+}
+.ft-friend-article ul li .media-body small {
+  color: #737373;
+  display: block;
+  float: right;
+  padding-right: 5px;
+}
+.ft-friend-article ul li .media-body p {
+  clear: both;
+  line-height: 1.5em;
+  color: #737373;
+  text-indent: 2em;
+  text-align: justify;
+  text-justify: inter-ideograph;
+  padding-right: 5px;
+}
+.ft-friend-article ul li .media-body .article-photo div {
+  padding-left: 0;
+  padding-right: 5px;
+  padding-bottom: 15px;
+}
+.ft-friend-article ul li .media-body .ft-article-footer {
+  clear: both;
+  position: relative;
+  top: -10px;
+}
+.ft-friend-article ul li .media-body .ft-article-footer .comment-menu {
+  display: inline-block;
+  float: right;
+  margin-top: -5px;
+}
+.ft-friend-article ul li .media-body .ft-article-footer .comment-menu a {
+  color: #737373;
+}
+.ft-friend-article ul li .media-body .ft-article-footer .comment-menu a small {
+  display: inline-block;
+  margin-left: 5px;
+}
+.ft-friend-article ul li .media-body .ft-article-footer .comment-menu a:hover {
+  color: #005e3c;
+}
+.ft-friend-article ul li .media-body .ft-article-footer .comment {
+  padding: 5px;
+  margin-top: 10px;
+  margin-right: 10px;
+  background-color: #ddd;
+}
+.ft-friend-article ul li .media-body .ft-article-footer .comment .triangle {
+  height: auto;
+  position: relative;
+  top: -15px;
+  color: #ddd;
+}
+.ft-friend-article ul li .media-body .ft-article-footer .comment .comment-praise {
+  margin-right: 10px;
+  margin-left: -10px;
+}
+.ft-friend-article ul li .media-body .ft-article-footer .comment .comment-content {
+  border-top: 1px solid #aaa;
+  margin-top: 10px;
+}
+.ft-friend-article ul li .media-body .ft-article-footer .comment .comment-content .comment-head {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+}
+.ft-friend-article ul li .media-body .ft-article-footer .comment .comment-content .media {
+  padding: 5px;
+}
+.ft-friend-article ul li .media-body .ft-article-footer .comment .comment-content .media .media-body p {
+  color: #333;
+  display: inline-block;
+  margin-left: 5px;
+  padding-top: 5px;
+  text-indent: 0;
+}
 .map-box {
   display: none;
 }
 .map-box .personal-map {
-  margin: 10px 0;
+  margin: 20px 0;
   padding: 0;
   border: 1px solid #ddd;
   border-radius: 3px;
-  height: 800px;
+  height: 500px;
 }
 .map-box .createHotpoint {
   float: right;
